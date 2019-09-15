@@ -1,5 +1,0 @@
-<<<<<<< HEAD
-updated on master branch
-=======
-Hello World hello world
->>>>>>> TestBranch
