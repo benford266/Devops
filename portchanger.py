@@ -45,7 +45,8 @@ while True:
     if switchline  == '':
         break
     switchout = switchout + [switchline]
- 
+
+## Gets interface information from the switch output
 interfacelist = []
  
 for l in switchout:
@@ -54,10 +55,14 @@ for l in switchout:
     interface = interface.replace (" ","")
     interfacelist = interfacelist + [str(interface)]
  
+
+## Get VLAN information from user
+print("\n\n Please enter Vlan information \n\n") 
 dvlan = input("Please enter data vlan: ")
 vvlan = input("Please enter voice vlan: ")
- 
 
+## Prints the switch config outto switch
+print("\n\nBelow is the config changes to paste into the switch\n\n")
 for port in interfacelist:
   print("int {} \n switchport access vlan {} \n switchport voice vlan {}".format(port,dvlan,vvlan))
  
