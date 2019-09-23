@@ -1,7 +1,7 @@
 ## mac address search
 
 
-print("****** Bens Port Changer ******")
+print("\n\n****** Bens Port Changer ******\n\n")
  
 ## Get mac addresses from user
 maclist = []
