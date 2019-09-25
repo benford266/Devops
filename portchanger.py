@@ -1,7 +1,8 @@
+import sys
 ## mac address search
 
 
-print("\n\n****** Bens Port Changer ******\n\n")
+print("\n\n****** Port Changer ******\n\n")
  
 ## Get mac addresses from user
 maclist = []
@@ -13,7 +14,9 @@ while True:
   macadd = input()
   if macadd == '':
     break
-  maclist = maclist + [macadd.lower()]
+  # Makes sure lenght of mac is correct
+  if len(macadd) == 17:
+    maclist = maclist + [macadd.lower()]
  
 ## Clean up list of mac addresses
  
@@ -50,11 +53,16 @@ while True:
 interfacelist = []
  
 for l in switchout:
-  if ("Po" or "Gi" or "Fa") in l:
+  if ("Gi" or "Fa") in l:
     interface = l[-8:]
     interface = interface.replace (" ","")
     interfacelist = interfacelist + [str(interface)]
  
+## Check ports vs mac
+if len(interfacelist) != len(splitlist):
+  countcont = input("You entered {} Mac addesses but only found {} ports. Do you want to continue? (y/n)".format(len(splitlist), len(interfacelist)))
+  if countcont == 'n':
+    sys.exit()
 
 ## Get VLAN information from user
 print("\n\n Please enter Vlan information \n\n") 
