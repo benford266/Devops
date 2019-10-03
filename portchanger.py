@@ -1,9 +1,25 @@
+#! python3 
+# portchanger.py
+#
+# Script to do vlan changes on cisco switches.
+
 import sys
-## mac address search
+import re
+
 
 
 print("\n\n****** Port Changer ******\n\n")
- 
+
+#check for valid mac address 
+def maccheck(macaddress):
+  if re.match("[0-9a-f]{2}([-:.])[0-9a-f]{2}(\\1[0-9a-f]{2}){4}$", macaddress.lower()):
+    return 1
+  else:
+    return 0
+
+
+
+
 ## Get mac addresses from user
 maclist = []
 maccount = ''
@@ -14,13 +30,15 @@ while True:
   macadd = input()
   if macadd == '':
     break
-  # Makes sure lenght of mac is correct
-  if len(macadd) == 17:
+  # Test for valid mac address and add to list if valid
+  if maccheck(macadd) == 1:
     maclist = maclist + [macadd.lower()]
  
 ## Clean up list of mac addresses
- 
-cleanlist = [mac.replace(":","") for mac in maclist]
+# only replaces colons in string 
+#cleanlist = [mac.replace(":","") for mac in maclist]
+# RegEX to clean up special chars between bits. 
+cleanlist = [re.sub(r'([-:.])',"", maclist)]
  
 ## Split to last 4 chars
 splitlist = [split[-4:] for split in cleanlist]
