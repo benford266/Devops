@@ -32,13 +32,13 @@ while True:
     break
   # Test for valid mac address and add to list if valid
   if maccheck(macadd) == 1:
-    maclist = maclist + [macadd.lower()]
+    maclist.append(macadd.lower()) 
  
 ## Clean up list of mac addresses
 # only replaces colons in string 
 #cleanlist = [mac.replace(":","") for mac in maclist]
-# RegEX to clean up special chars between bits. 
-cleanlist = [re.sub(r'([-:.])',"", maclist)]
+# RegEX to clean up special chars between bits.
+cleanlist = [mac.replace(":","") for mac in maclist]
  
 ## Split to last 4 chars
 splitlist = [split[-4:] for split in cleanlist]
