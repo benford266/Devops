@@ -1,0 +1,2 @@
+NSG,Source,Source Port Ranges,Destination,Destination Port Ranges,Protocol,Action,Name,Description,Direction,Priority
+BenBackTestNew,VirtualNetwork,*,192.168.0.0/24,80,TCP,Allow,Allow_HTTP_Access ,To allow HTTP access to the 192.168.0.0 network ,Outbound,100
