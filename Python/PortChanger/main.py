@@ -4,8 +4,8 @@ from tkinter import *
 desklist = []
 interfacelist = get_if_list()
 def desktolist(desksq):
-    for line in desksq.splitlines():
-        desklist = []
+    desklist = []
+    for line in desksq.splitlines():    
         desklist.append(line)
     return desklist
 
