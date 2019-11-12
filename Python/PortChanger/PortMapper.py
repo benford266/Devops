@@ -2,9 +2,21 @@ import sys
 from scapy.all import *
 from tkinter import *
 
+#Randoms
+# Loads Tkinter
+window = Tk()
+# Gets interface list
+interfacelist = get_if_list()
+# Used to set interface
+ifset = StringVar(window)
+ifset.set("Local Area Connection")
+
+
+
 
 #Functions
-interfacelist = get_if_list()
+
+
 
 # Capture CDP Packet
 def capturecdp(interface):
@@ -17,19 +29,18 @@ def capturecdp(interface):
 
 # Start Capture
 def capture():
-    capturepress = True
-    while capturepress:
-        port = capturecdp('Local Area Connection')
-        time.sleep(1)
-        global output
-        output.insert(INSERT,port)
+    port = capturecdp(ifset.get())
+    time.sleep(1)
+    global output
+    output.insert(INSERT,port)
+    output.insert(INSERT, '\n')
 
 #Exit buttom
 def exit():
     sys.exit()
 
 # Gui design
-window = Tk()
+
 window.title("Port Mapper")
 window.geometry('500x500')
 window.configure(background='grey')
@@ -37,9 +48,9 @@ window.configure(background='grey')
 # Define Objects
 lbl = Label(window,text='Port Mapper')
 iflbl = Label(window, text="Please select Interface:")
-capturebtn = Button(window, text='Start Capture', command=capture)
-ifselect = OptionMenu(window, '', *interfacelist)
-output = Text(window,width=62, height=25)
+capturebtn = Button(window, text='Get Port', command=capture)
+ifselect = OptionMenu(window, ifset, *interfacelist)
+output = Text(window,width=70, height=25)
 exitbtn = Button(window, text='Exit Application', command=exit)
 
 
