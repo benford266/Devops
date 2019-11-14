@@ -1,6 +1,7 @@
 import sys
 from scapy.all import *
 from tkinter import *
+from threading import Thread
 
 #Randoms
 # Loads Tkinter
@@ -20,7 +21,7 @@ ifset.set("Local Area Connection")
 
 # Capture CDP Packet
 def capturecdp(interface):
-    cdppacket = sniff(iface=interface, count=1)
+    cdppacket = sniff(iface=interface, count=100)
     return cdppacket
 
 # Start Capture
@@ -45,7 +46,7 @@ window.configure(background='grey')
 # Define Objects
 lbl = Label(window,text='Port Mapper')
 iflbl = Label(window, text="Please select Interface:")
-capturebtn = Button(window, text='Get Port', command=capture)
+capturebtn = Button(window, text='Sniff', command=capture)
 ifselect = OptionMenu(window, ifset, *interfacelist)
 output = Text(window,width=70, height=25)
 exitbtn = Button(window, text='Exit Application', command=exit)
@@ -60,4 +61,5 @@ output.grid(column=0, row=4, columnspan=3)
 exitbtn.grid(column=0, row=5, columnspan=3)
 
 #Start
+
 window.mainloop()
