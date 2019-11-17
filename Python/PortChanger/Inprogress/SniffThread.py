@@ -8,7 +8,7 @@ class Sniffer(Thread):
         self.interface = interface
 
     def run(self):
-        sniff(iface=self.interface, filter='ip',prn=self.print_packet)
+        sniff(iface=self.interface,count=10, filter='ip',prn=self.print_packet)
 
     def print_packet(self, packet):
         ip_layer = packet.getlayer(IP)
