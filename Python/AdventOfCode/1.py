@@ -1,5 +1,6 @@
 #! Advent of code day 1
 import math
+import sys
 
 massinput = [74364,
 146203,
@@ -103,18 +104,26 @@ massinput = [74364,
 98839]
 
 def GetFuel(mass):
-    e = int(mass)
-    floater = e / 3
-    fuel = math.floor(int(floater))
+    floater = (mass / 3) - 2
+    fuel = math.floor(floater)
     return fuel
 
-
-
 x = 0
-
 for i in massinput:
-    b = GetFuel(i)
-    x = x + b
+    newmass = GetFuel(i)
+    b = newmass
+    d = int()
+    while b > 0:
+        b = GetFuel(b)
+        if b > 0:
+            d = d + b
+        print(d)
+
+    x = x + newmass + d
+
+
+
+
 
 
 print(x)
