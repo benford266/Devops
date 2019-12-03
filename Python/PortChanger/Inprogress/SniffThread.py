@@ -3,18 +3,16 @@ from threading import Thread
 from time import sleep
 
 class Sniffer(Thread):
-    def __init__(self, interface='Local Area Connection'):
+    def __init__(self, interface='en0'):
         super().__init__()
         self.interface = interface
 
     def run(self):
-        load_contrib('lldp')
-        sniff(iface=self.interface,count=1,  filter='lldp',prn=self.print_packet)
+        sniff(iface=self.interface,count=10, filter='ip',prn=self.print_packet)
 
     def print_packet(self, packet):
-        load_contrib('lldp')
-        ip_layer = packet[]
-        print(ip_layer)
+        ip_layer = packet.getlayer(IP)
+        print("{src} --> {dst}".format(src=ip_layer.src, dst=ip_layer.dst))
 
 sniffer = Sniffer()
 
