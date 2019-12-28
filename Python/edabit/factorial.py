@@ -1,7 +1,5 @@
-def factorial(num):
-    for i in range(1, num):
-        num = i * num
-    return num
-
-
-factorial(13)
+def factorial(Z):
+    anwser = 1
+    for i in range(1,Z+1):
+        anwser = anwser * i
+    return anwser
